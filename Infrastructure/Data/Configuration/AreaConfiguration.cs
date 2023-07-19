@@ -14,5 +14,7 @@ public class AreaConfiguration : IEntityTypeConfiguration<Area>
         .HasColumnType("varchar")
         .HasMaxLength(50)
         .IsRequired();
+
+        builder.HasKey(a => a.Id);
     }
 }

@@ -33,6 +33,11 @@ private readonly SistemReporteContext _context;
     private SoftwareRepository _softwares;
     private PuestoRepository _puestos;
     private TipoInsidenciaRepository _tipoInsidencias;
+    private EmailTrainerRepository  _emailTrainers;
+    private LugarRepository    _lugares;
+    private TelefonoRepository  _telefonos;
+    private TelefonoTrainerRepository _telefonosTrainers;
+    private TipoSoftwareRepository  _tiposSoftwares;
 
 
     //Implementamos cada metodo para ESTABLECER UN LAZYLOAD es decir
@@ -154,6 +159,64 @@ private readonly SistemReporteContext _context;
                 _tipoInsidencias = new TipoInsidenciaRepository(_context);
             }
             return _tipoInsidencias;
+        }
+    }
+
+    public IEmailTrainer EmailTrainers
+    {
+        get
+        {
+            if(_emailTrainers == null)
+            {
+                _emailTrainers = new EmailTrainerRepository(_context);
+            }
+            return _emailTrainers;
+        }
+    }
+    public ILugar Lugares
+    {
+        get
+        {
+            if(_lugares == null)
+            {
+                _lugares = new LugarRepository(_context);
+            }
+            return _lugares;
+        }
+    }
+
+    public ITelefono Telefonos
+    {
+        get
+        {
+            if(_telefonos == null)
+            {
+                _telefonos = new TelefonoRepository(_context);
+            }
+            return _telefonos;
+        }
+    }
+    public ITelefonoTrainer TelefonoTrainers
+    {
+        get
+        {
+            if(_telefonosTrainers == null)
+            {
+                _telefonosTrainers = new TelefonoTrainerRepository(_context);
+            }
+            return _telefonosTrainers;
+        }
+    }
+
+    public ITipoSoftware TipoSoftwares
+    {
+                get
+        {
+            if(_tiposSoftwares == null)
+            {
+                _tiposSoftwares = new TipoSoftwareRepository(_context);
+            }
+            return _tiposSoftwares;
         }
     }
 

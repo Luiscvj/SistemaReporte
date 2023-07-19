@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "l+vSnXVIQFIKXnjPmSPdkGwjzgdOvBp3f9Gn9X1vHoOdpqEqvvXH3fw4xYUF1lvVDmCE/gYEHXwlGSLKnGpmOw==",
+  "dgSpecHash": "wmINNm2UAroaNSiozf+er966/YKcEBqjfa3vDL5kU4Dtwb2VbdnLNI4MSko9+RXI7EGcxKukXSQhrOzojbIJ4Q==",
   "success": true,
-  "projectFilePath": "c:\\Users\\luisc\\Documents\\SistemaReporte\\Core\\Core.csproj",
+  "projectFilePath": "/home/apolm01-009/LuisCarlos/SistemaReporte/Core/Core.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

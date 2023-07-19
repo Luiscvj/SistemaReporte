@@ -13,6 +13,12 @@ public interface IUnitOfWork
     IPuesto Puestos {get;}
     ISoftware Softwares {get;}
     ITipoInsidencia TipoInsidencias {get;}
+    IEmailTrainer EmailTrainers {get;}
+    ILugar Lugares {get;}
+    ITelefono Telefonos {get;}
+    ITelefonoTrainer TelefonoTrainers {get;}
+    ITipoSoftware TipoSoftwares {get;}
+
     
 
 
