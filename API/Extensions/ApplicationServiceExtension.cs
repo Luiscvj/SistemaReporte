@@ -1,6 +1,9 @@
+using AspNetCoreRateLimit;
 using Core.Interfaces;
 using Infrastructure.Repository;
 using Infrastructure.UnitOfWork;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.Extensions.Options;
 
 namespace API.Extensions;
@@ -29,6 +32,42 @@ public static class ApplicationServiceExtension{
         //sus respectivos repositorios.
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+    }
+
+
+
+        public static void ConfigureRateLimiting(this IServiceCollection services)
+    {
+        services.AddMemoryCache();
+        services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
+        services.AddInMemoryRateLimiting();
+        services.Configure<IpRateLimitOptions>(Options => 
+        {
+            Options.EnableEndpointRateLimiting = true;
+            Options.StackBlockedRequests = false;
+            Options.HttpStatusCode = 429;
+            Options.RealIpHeader = "X-Real-Ip";
+            Options.GeneralRules = new List<RateLimitRule>
+            {
+                new RateLimitRule
+                {
+                    Endpoint = "*",
+                    Period ="10s",
+                    Limit = 2
+                }
+            };
+        });
+    }
+
+
+    public static void ConsigureApiVersioning(this IServiceCollection services)
+    {
+        services.AddApiVersioning(options =>
+        {
+            options.DefaultApiVersion = new ApiVersion(1,0);
+            options.AssumeDefaultVersionWhenUnspecified = true;
+            options.ApiVersionReader = new QueryStringApiVersionReader("v");
+        });
     }
     
 }

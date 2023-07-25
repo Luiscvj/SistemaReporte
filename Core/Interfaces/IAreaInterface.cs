@@ -7,6 +7,7 @@ public interface IAreaInterface{
 
     Task<Area> ? GetByIdAsync(int id);
     Task<IEnumerable<Area>> GetAllAsync();
+    Task<IEnumerable<Area>> GetAllByOrder();
     IEnumerable<Area> Find(Expression<Func<Area,bool>> expression);
     void Add(Area entity);
     void AddRange(IEnumerable<Area> entities);

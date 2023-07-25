@@ -36,9 +36,20 @@ public class AreaRepository : IAreaInterface
     public async Task<IEnumerable<Area>> GetAllAsync()
     {
         return await _context.Areas.Include(a => a.Lugares).ToListAsync();
-            
+                  
+    }
+
+    public  async Task<IEnumerable<Area>> GetAllByOrder()
+    {
+        var sel =   from area in _context.Areas
+                where area.Lugares.Any(Lugar => Lugar.NroPuestos >= 25)
+                select area;
+
+         return await sel.ToListAsync();
+          
         
-        
+                
+
     }
 
     public async  Task<Area>  GetByIdAsync(int id)

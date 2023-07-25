@@ -57,6 +57,7 @@ public async Task<ActionResult<IEnumerable<AreaDto>>> GetAreasLugares(){
 }
 
 [HttpGet("{id}")]
+
 [ProducesResponseType(StatusCodes.Status200OK)]
 [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -66,7 +67,28 @@ public async Task<AreaDto> GetArea(int id){
 }
 
 
+[HttpGet("getById{id}")]
 
+[ProducesResponseType(StatusCodes.Status200OK)]
+[ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+public async Task<AreaDto> GetArea11(int id){
+    var area = await _unitOfWork.Areas.GetByIdAsync(id);
+    return mapper.Map<AreaDto>(area);
+} 
+
+[HttpGet("getArea")]
+
+[ProducesResponseType(StatusCodes.Status200OK)]
+[ProducesResponseType(StatusCodes.Status404NotFound)]
+[ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+public async Task<IEnumerable<AreaDto>> GetAreas()
+{
+    var areas = await _unitOfWork.Areas.GetAllByOrder();
+   
+    return mapper.Map<AreaDto[]>(areas);
+}
 
 
 [HttpPost]

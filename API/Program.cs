@@ -3,11 +3,15 @@ using API.Extensions;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using AspNetCoreRateLimit;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.ConfigureCors();
 builder.Services.AddAplicationServices();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+builder.Services.ConfigureRateLimiting();
+builder.Services.ConsigureApiVersioning();
+
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -30,6 +34,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseApiVersioning();
+app.UseIpRateLimiting();//Aqui ya le estoy enviando a mi core de mi Backend 
 app.UseCors("CorsPolicy");
 app.UseHttpsRedirection();
 
