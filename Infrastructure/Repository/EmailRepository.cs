@@ -30,12 +30,13 @@ public class EmailRepository : IEmail
 
     public async Task<IEnumerable<Email>> GetAllEmails()
     {
-       return await _context.Set<Email>().ToListAsync();
+       return await _context.Emails
+       .Include(e => e.EmailTrainers).ToListAsync();
     }
 
     public async Task<Email> GetEmailById(int id)
     {
-        return await _context.Set<Email>().FindAsync(id);
+        return await _context.Emails.Include(e => e.EmailTrainers).FirstOrDefaultAsync(c =>c.Id == id);;
     }
 
     public void RemoveEmail(Email entity)

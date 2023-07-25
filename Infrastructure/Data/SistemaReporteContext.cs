@@ -25,6 +25,8 @@ public class SistemReporteContext : DbContext {
     public DbSet<Telefono> ? Telefonos {get;set;} 
     public DbSet<Insidencia> ? Insidencias {get;set;}
     public DbSet<TipoInsidencia> ? TipoInsidencias {get;set;}
+    public DbSet<Email> ? Emails {get;set;}
+    public DbSet<EmailTrainer> ? EmailTrainers {get;set;}
    
     
 

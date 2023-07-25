@@ -62,7 +62,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Email");
+                    b.ToTable("Email", (string)null);
                 });
 
             modelBuilder.Entity("Core.Entities.EmailTrainer", b =>

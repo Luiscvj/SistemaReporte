@@ -10,4 +10,5 @@ public class Categoria {
     public ICollection<Hardware> ? Hardwares {get; set;}
     public ICollection<Software> ? Softwares {get; set;}
     public ICollection<Insidencia> Insidencias { get; set; }
+    
 }

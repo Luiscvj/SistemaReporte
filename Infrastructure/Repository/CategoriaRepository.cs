@@ -36,12 +36,19 @@ public class CategoriaRepository : ICategoria
 
     public async Task<IEnumerable<Categoria>> GetAllCategories()
     {
-        return  await _context.Set<Categoria>().ToListAsync();
+        return  await _context.Categorias
+        .Include(c => c.Hardwares)
+        .Include(c => c.Softwares)
+        .Include(c => c.Insidencias).ToListAsync();
     }
 
     public async Task<Categoria> GetCategoryById(int id)
     {
-        return  await _context.Set<Categoria>().FindAsync(id);
+        return  await _context.Categorias
+        .Include(c => c.Hardwares)
+        .Include(c => c.Softwares)
+        .Include(c => c.Insidencias)
+        .FirstOrDefaultAsync(c=> c.Id == id);
     }
 
     public void RemoveCategoriaByID(Categoria entity)

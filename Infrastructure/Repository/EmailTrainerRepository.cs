@@ -36,11 +36,12 @@ public class EmailTrainerRepository : IEmailTrainer
         return await  _context.Set<EmailTrainer>().ToListAsync();
     }
 
-    public async  Task<EmailTrainer>? GetByIdAsync(int id)
+    public async  Task<EmailTrainer>? GetByIdAsync( int idEmail)
     {
-        return await _context.Set<EmailTrainer>().FindAsync(id);
+        return await _context.EmailTrainers.FirstOrDefaultAsync(c =>c.EmailID ==idEmail);
     }
 
+    
 
     public void Remove(EmailTrainer entity)
     {

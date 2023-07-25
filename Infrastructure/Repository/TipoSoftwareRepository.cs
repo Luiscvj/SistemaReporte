@@ -33,12 +33,16 @@ public class TipoSoftwareRepository : ITipoSoftware
 
     public async Task<IEnumerable<TipoSoftware>> GetAllAsync()
     {
-        return await  _context.Set<TipoSoftware>().ToListAsync();
+        return await  _context.TipoSoftwares
+        .Include(ts =>ts.Softwares)
+        .ToListAsync();
     }
 
     public async  Task<TipoSoftware>? GetByIdAsync(int id)
     {
-        return await _context.Set<TipoSoftware>().FindAsync(id);
+        return await _context.TipoSoftwares
+        .Include(ts => ts.Softwares)
+        .FirstOrDefaultAsync(TS => TS.Id == id);
     }
 
 
